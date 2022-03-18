@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
+using System.Configuration;
 
 namespace CW2
 {
-    public partial class Form2 : Form
+    public partial class Audit : Form
     {
-        public Form2()
+        public Audit()
         {
             InitializeComponent();
             ComboBox();
@@ -25,53 +25,43 @@ namespace CW2
             label8.Text = "Votes: " + Cv.Cand4;
             label9.Text = Login.sendtext;
         }
-
         String connection = ConfigurationManager.ConnectionStrings["Default"].ToString();
-
         public string Candidate1Votes = "";
         public string Candidate2Votes = "";
         public string Candidate3Votes = "";
         public string Candidate4Votes = "";
-        private void button1_Click(object sender, EventArgs e)
+        public string Combobox = "";
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Hide();
-            Form1 f1 = new Form1();
-            f1.ShowDialog();
+            Candidates();
+            Moon();
+            Moon2();
+            Moon3();
+            Moon4();
+            CountVotes Cv = new CountVotes(Candidate1Votes, Candidate2Votes, Candidate3Votes, Candidate4Votes);
+            label5.Text = "Votes: " + Cv.Cand1;
+            label6.Text = "Votes: " + Cv.Cand2;
+            label7.Text = "Votes: " + Cv.Cand3;
+            label8.Text = "Votes: " + Cv.Cand4;
         }
-
-        private void progressBar3_Click(object sender, EventArgs e)
+        public void ComboBox()
         {
+            using (var con = new SQLiteConnection(connection))
+            {
+                con.Open();
+                string query = "Select VoteName from tblCandidateVote";
+                SQLiteCommand cmd = new SQLiteCommand(query, con);
+                SQLiteDataAdapter da = new SQLiteDataAdapter(query, con);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                cmd.ExecuteNonQuery();
+                con.Close();
 
-        }
-
-        private void progressBar4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
+                comboBox1.DisplayMember = "VoteName";
+                comboBox1.ValueMember = "VoteName";
+                comboBox1.DataSource = ds.Tables[0];
+                comboBox1.Enabled = true;
+            }
         }
         public void Moon()
         {
@@ -134,38 +124,6 @@ namespace CW2
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Candidates();
-            Moon();
-            Moon2();
-            Moon3();
-            Moon4();
-            CountVotes Cv = new CountVotes(Candidate1Votes, Candidate2Votes, Candidate3Votes, Candidate4Votes);
-            label5.Text = "Votes: " + Cv.Cand1;
-            label6.Text = "Votes: " + Cv.Cand2;
-            label7.Text = "Votes: " + Cv.Cand3;
-            label8.Text = "Votes: " + Cv.Cand4;
-        }
-        public void ComboBox()
-        {
-            using (var con = new SQLiteConnection(connection))
-            {
-                con.Open();
-                string query = "Select VoteName from tblCandidateVote";
-                SQLiteCommand cmd = new SQLiteCommand(query, con);
-                SQLiteDataAdapter da = new SQLiteDataAdapter(query, con);
-                DataSet ds = new DataSet();
-                da.Fill(ds);
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                comboBox1.DisplayMember = "VoteName";
-                comboBox1.ValueMember = "VoteName";
-                comboBox1.DataSource = ds.Tables[0];
-                comboBox1.Enabled = true;
-            }
-        }
         public void Candidates()
         {
             using (var con = new SQLiteConnection(connection))
@@ -232,31 +190,52 @@ namespace CW2
         }
 
         private void button5_Click(object sender, EventArgs e)
-        {
-            Hide();
-            Form1 f1 = new Form1();
-            f1.ShowDialog();
+            {
+                this.Hide();
+                Form1 f1 = new Form1();
+                f1.ShowDialog();
+            }
 
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            dataGridView1.Rows.Clear();
+            using (var con = new SQLiteConnection(connection))
+            {
+                SQLiteCommand cmd = new SQLiteCommand(con);
+                cmd.CommandText = "Select VoteID from tblCandidateVote where VoteName = @Votename";
+                cmd.Parameters.AddWithValue("@Votename", comboBox1.Text);
+                con.Open();
+                var result = cmd.ExecuteScalar();
+                con.Close();
+                Combobox = result.ToString();
+            }
+            using (var con = new SQLiteConnection(connection))
+            {
+                con.Open();
+            SQLiteCommand comm = new SQLiteCommand("Select * From tblVotes where VoteID = @Votename", con);
+                comm.Parameters.AddWithValue("@Votename", Combobox);
+                using (SQLiteDataReader read = comm.ExecuteReader())
+                {
+                    while (read.Read())
+                    {
+                        dataGridView1.Rows.Add(new object[] {
+                            read.GetValue(read.GetOrdinal("VoteID")),
+                            read.GetValue(read.GetOrdinal("CandidateID")),
+                            read.GetValue(read.GetOrdinal("VoterID"))
+                        });
+                    }
+                }
+            }
         }
     }
 }

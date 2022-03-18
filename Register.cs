@@ -17,6 +17,7 @@ namespace CW2
         public Register()
         {
             InitializeComponent();
+            ComboBox();
             DOBPicker.Format = DateTimePickerFormat.Custom;
             DOBPicker.CustomFormat = "yyyy-MM-dd";
         }
@@ -87,7 +88,7 @@ namespace CW2
                     using (var con = new SQLiteConnection(connection))
                     {
                         con.Open();
-                        string stringQuery = "INSERT INTO tblVoter" + "(VoterName, VoterDOB, VoterUsername, VoterPassword)" + "Values('" + NameText.Text + "','" + DOBPicker.Text + "','" + UsernameText.Text + "','" + PasswordText.Text + "') ON conflict do update set VoterName = VoterName";
+                        string stringQuery = "INSERT INTO tblVoter" + "(VoterName, VoterDOB, VoterUsername, VoterPassword, VoterCountry)" + "Values('" + NameText.Text + "','" + DOBPicker.Text + "','" + UsernameText.Text + "','" + PasswordText.Text +  "','" + comboBox1.Text + "') ON conflict do update set VoterName = VoterName";
                         var SqliteCmd = new SQLiteCommand();
                         SqliteCmd = con.CreateCommand();
                         SqliteCmd.CommandText = stringQuery;
@@ -116,6 +117,40 @@ namespace CW2
             this.Hide();
             Login f1 = new Login();
             f1.ShowDialog();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        public void ComboBox()
+        {
+            using (var con = new SQLiteConnection(connection))
+            {
+                con.Open();
+                string query = "Select CountryName from tblCountry";
+                SQLiteCommand cmd = new SQLiteCommand(query, con);
+                SQLiteDataAdapter da = new SQLiteDataAdapter(query, con);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
+                comboBox1.DisplayMember = "CountryName";
+                comboBox1.ValueMember = "CountryName";
+                comboBox1.DataSource = ds.Tables[0];
+                comboBox1.Enabled = true;
+            }
         }
     }
 }

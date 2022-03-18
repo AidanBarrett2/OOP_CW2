@@ -71,6 +71,7 @@ namespace CW2
             this.label2.Size = new System.Drawing.Size(117, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "Archibald Sinclair";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -80,6 +81,7 @@ namespace CW2
             this.label3.Size = new System.Drawing.Size(99, 17);
             this.label3.TabIndex = 7;
             this.label3.Text = "Clement Attlee";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -187,6 +189,7 @@ namespace CW2
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

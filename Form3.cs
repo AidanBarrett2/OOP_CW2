@@ -18,6 +18,9 @@ namespace CW2
         String connection = ConfigurationManager.ConnectionStrings["Default"].ToString();
         public string btnchoice = "";
         public int only1;
+        public string VoteType = "";
+        SQLiteDataReader dr;
+
         public void button1_Click(object sender, EventArgs e)
         {
             using (var con = new SQLiteConnection(connection))
@@ -148,11 +151,55 @@ namespace CW2
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            options();
-            checkBox1.Checked = false;
-            checkBox2.Checked = false;
-            checkBox3.Checked = false;
-            checkBox4.Checked = false;
+            using (var con = new SQLiteConnection(connection))
+            {
+                SQLiteCommand cmd = new SQLiteCommand(con);
+                cmd.CommandText = "Select VoteType from tblCandidateVote where VoteName = @Votename";
+                cmd.Parameters.AddWithValue("@Votename", comboBox1.Text);
+                con.Open();
+                var result = cmd.ExecuteScalar();
+                con.Close();
+                VoteType = result.ToString();
+
+            }
+            if (VoteType == "Preferential")
+            {
+                listBox1.Show();
+                listBox2.Show();
+                pictureBox1.Show();
+                pictureBox2.Show();
+                checkBox1.Hide();
+                checkBox2.Hide();
+                checkBox3.Hide();
+                checkBox4.Hide();
+                Candidate1.Hide();
+                Candidate2.Hide();
+                Candidate3.Hide();
+                Candidate4.Hide();
+                listbox();
+                button2.Show();
+            }
+            else
+            {
+                button2.Hide();
+                listBox1.Hide();
+                listBox2.Hide();
+                pictureBox1.Hide();
+                pictureBox2.Hide();
+                checkBox1.Show();
+                checkBox2.Show();
+                checkBox3.Show();
+                checkBox4.Show();
+                Candidate1.Show();
+                Candidate2.Show();
+                Candidate3.Show();
+                Candidate4.Show();
+                options();
+                checkBox1.Checked = false;
+                checkBox2.Checked = false;
+                checkBox3.Checked = false;
+                checkBox4.Checked = false;
+            }
         }
         public void options()
         {
@@ -526,6 +573,67 @@ namespace CW2
                     SqliteCmd.ExecuteNonQuery();
                     con.Close();
                 }
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex == -1)
+            {
+
+            }
+            else
+            {
+                listBox2.Items.Add(listBox1.SelectedItem);
+                listBox1.Items.Remove(listBox1.SelectedItem);
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedIndex == -1)
+            {
+
+            }
+            else
+            {
+                listBox1.Items.Add(listBox2.SelectedItem);
+                listBox2.Items.Remove(listBox2.SelectedItem);
+            }
+        }
+        public void listbox()
+            {
+            using (var con = new SQLiteConnection(connection))
+            {
+                SQLiteCommand cmd = new SQLiteCommand(con);
+                cmd.CommandText = "Select * from tblCandidateVote where VoteName = @Votename";
+                cmd.Parameters.AddWithValue("@Votename", comboBox1.Text);
+                con.Open();
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    listBox1.Items.Add(dr["Candidate1"]);
+                    listBox1.Items.Add(dr["Candidate2"]);
+                    listBox1.Items.Add(dr["Candidate3"]);
+                    listBox1.Items.Add(dr["Candidate4"]);
+                }
+                con.Close();
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            using (var con = new SQLiteConnection(connection))
+            {
+                SQLiteCommand cmd = new SQLiteCommand(con);
+                cmd.CommandText = "Insert into tblPreferential (Vote1, Vote2, Vote3, Vote4)values(@Vote1, @Vote2, @Vote3, @Vote4)";
+                cmd.Parameters.AddWithValue("@Vote1", listBox2.Items[0]);
+                cmd.Parameters.AddWithValue("@Vote2", listBox2.Items[1]);
+                cmd.Parameters.AddWithValue("@Vote3", listBox2.Items[2]);
+                cmd.Parameters.AddWithValue("@Vote4", listBox2.Items[3]);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
             }
         }
     }
