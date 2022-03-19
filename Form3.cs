@@ -20,6 +20,7 @@ namespace CW2
         public int only1;
         public string VoteType = "";
         SQLiteDataReader dr;
+        string Permission;
 
         public void button1_Click(object sender, EventArgs e)
         {
@@ -48,9 +49,34 @@ namespace CW2
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Form1 f1 = new Form1();
-            f1.ShowDialog();
+            using (var con = new SQLiteConnection(connection))
+            {
+                SQLiteCommand cmd = new SQLiteCommand(con);
+                cmd.CommandText = "Select VoterPermissions from tblVoter where VoterUsername = @Username";
+                cmd.Parameters.AddWithValue("@Username", label1.Text);
+                con.Open();
+                var result = cmd.ExecuteScalar();
+                con.Close();
+                Permission = result.ToString();
+            }
+            if (Permission == "Voter")
+            {
+                this.Hide();
+                Form1 f1 = new Form1();
+                f1.ShowDialog();
+            }
+            if (Permission == "Administrator")
+            {
+                this.Hide();
+                AdminLandingPage ALP = new AdminLandingPage();
+                ALP.ShowDialog();
+            }
+            if (Permission == "Auditer")
+            {
+                this.Hide();
+                AuditerLandingPage ALP = new AuditerLandingPage();
+                ALP.ShowDialog();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -612,10 +638,10 @@ namespace CW2
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    listBox1.Items.Add(dr["Candidate1"]);
-                    listBox1.Items.Add(dr["Candidate2"]);
-                    listBox1.Items.Add(dr["Candidate3"]);
-                    listBox1.Items.Add(dr["Candidate4"]);
+                    listBox1.Items.Add("1. " + dr["Candidate1"]);
+                    listBox1.Items.Add("2. " + dr["Candidate2"]);
+                    listBox1.Items.Add("3. " + dr["Candidate3"]);
+                    listBox1.Items.Add("4. " + dr["Candidate4"]);
                 }
                 con.Close();
             }
@@ -623,18 +649,58 @@ namespace CW2
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            using (var con = new SQLiteConnection(connection))
+            string item1 = listBox2.Items[0].ToString();
+            string item2 = listBox2.Items[1].ToString();
+            string item3 = listBox2.Items[2].ToString();
+            string item4 = listBox2.Items[3].ToString();
+                string voterid;
+                string voteid;
+                using (var con = new SQLiteConnection(connection))
+                {
+                    SQLiteCommand cmd = new SQLiteCommand(con);
+                    cmd.CommandText = "Select VoterID from tblVoter where VoterUsername = @username";
+                    cmd.Parameters.AddWithValue("@username", label1.Text);
+                    con.Open();
+                    var result = cmd.ExecuteScalar();
+                    con.Close();
+                    voterid = result.ToString();
+
+                }
+                using (var con = new SQLiteConnection(connection))
+                {
+                    SQLiteCommand cmd = new SQLiteCommand(con);
+                    cmd.CommandText = "Select VoteID from tblCandidateVote where VoteName = @Votename";
+                    cmd.Parameters.AddWithValue("@Votename", comboBox1.Text);
+                    con.Open();
+                    var result = cmd.ExecuteScalar();
+                    con.Close();
+                    voteid = result.ToString();
+
+                }
+                using (var con = new SQLiteConnection(connection))
             {
                 SQLiteCommand cmd = new SQLiteCommand(con);
-                cmd.CommandText = "Insert into tblPreferential (Vote1, Vote2, Vote3, Vote4)values(@Vote1, @Vote2, @Vote3, @Vote4)";
-                cmd.Parameters.AddWithValue("@Vote1", listBox2.Items[0]);
-                cmd.Parameters.AddWithValue("@Vote2", listBox2.Items[1]);
-                cmd.Parameters.AddWithValue("@Vote3", listBox2.Items[2]);
-                cmd.Parameters.AddWithValue("@Vote4", listBox2.Items[3]);
+                cmd.CommandText = "Insert into tblPreferential (Vote1, Vote2, Vote3, Vote4, VoterID, VoteID)values(@Vote1, @Vote2, @Vote3, @Vote4, @Voterid, @Voteid)";
+                cmd.Parameters.AddWithValue("@Vote1", item1.Substring(0, 1));
+                cmd.Parameters.AddWithValue("@Vote2", item2.Substring(0, 1));
+                cmd.Parameters.AddWithValue("@Vote3", item3.Substring(0, 1));
+                cmd.Parameters.AddWithValue("@Vote4", item4.Substring(0, 1));
+                cmd.Parameters.AddWithValue("@Voterid", voterid);
+                cmd.Parameters.AddWithValue("@Voteid", voteid);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

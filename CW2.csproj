@@ -73,11 +73,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAVote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAVote.Designer.cs">
+      <DependentUpon>AddAVote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminLandingPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminLandingPage.Designer.cs">
+      <DependentUpon>AdminLandingPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Audit.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Audit.Designer.cs">
       <DependentUpon>Audit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AuditerLandingPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuditerLandingPage.Designer.cs">
+      <DependentUpon>AuditerLandingPage.cs</DependentUpon>
     </Compile>
     <Compile Include="CountVotes.cs" />
     <Compile Include="DBAccess.cs" />
@@ -131,10 +149,25 @@
     <Compile Include="Register.Designer.cs">
       <DependentUpon>Register.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegisterAuditer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterAuditer.Designer.cs">
+      <DependentUpon>RegisterAuditer.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestCount.cs" />
     <Compile Include="Vote.cs" />
+    <EmbeddedResource Include="AddAVote.resx">
+      <DependentUpon>AddAVote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminLandingPage.resx">
+      <DependentUpon>AdminLandingPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Audit.resx">
       <DependentUpon>Audit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuditerLandingPage.resx">
+      <DependentUpon>AuditerLandingPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -170,6 +203,9 @@
     <Content Include="Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
     </Content>
+    <EmbeddedResource Include="RegisterAuditer.resx">
+      <DependentUpon>RegisterAuditer.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

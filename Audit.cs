@@ -192,8 +192,8 @@ namespace CW2
         private void button5_Click(object sender, EventArgs e)
             {
                 this.Hide();
-                Form1 f1 = new Form1();
-                f1.ShowDialog();
+                AuditerLandingPage ALP = new AuditerLandingPage();
+                ALP.ShowDialog();
             }
 
         private void label1_Click(object sender, EventArgs e)

@@ -20,6 +20,7 @@ namespace CW2
 
         }
         public static string sendtext = "";
+        string Permission = "";
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -48,11 +49,36 @@ namespace CW2
                 DA.Fill(DT);
                 if (DT.Rows.Count > 0)
                 {
-                    sendtext = UsernameText.Text;
-                    this.Hide();
-                    Form1 f1 = new Form1();
-                    f1.ShowDialog();
-
+                    using (var con = new SQLiteConnection(connection))
+                    {
+                        SQLiteCommand cmd = new SQLiteCommand(con);
+                        cmd.CommandText = "Select VoterPermissions from tblVoter where VoterUsername = @Username";
+                        cmd.Parameters.AddWithValue("@Username", UsernameText.Text);
+                        var result = cmd.ExecuteScalar();
+                        con.Close();
+                        Permission = result.ToString();
+                    }
+                    if (Permission == "Voter")
+                    {
+                        sendtext = UsernameText.Text;
+                        this.Hide();
+                        Form1 f1 = new Form1();
+                        f1.ShowDialog();
+                    }
+                    if(Permission == "Administrator")
+                    {
+                        sendtext = UsernameText.Text;
+                        this.Hide();
+                        AdminLandingPage ALP= new AdminLandingPage();
+                        ALP.ShowDialog();
+                    }
+                    if (Permission == "Auditer")
+                    {
+                        sendtext = UsernameText.Text;
+                        this.Hide();
+                        AuditerLandingPage ALP = new AuditerLandingPage();
+                        ALP.ShowDialog();
+                    }
                 }
                 else
                 {

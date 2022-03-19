@@ -24,14 +24,17 @@ namespace CW2
             label7.Text = "Votes: " + Cv.Cand3;
             label8.Text = "Votes: " + Cv.Cand4;
             label9.Text = Login.sendtext;
+            button2.Hide();
         }
 
         String connection = ConfigurationManager.ConnectionStrings["Default"].ToString();
-
+        public static string combo = "";
         public string Candidate1Votes = "";
         public string Candidate2Votes = "";
         public string Candidate3Votes = "";
         public string Candidate4Votes = "";
+        string VoteType;
+        string Permission;
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -136,16 +139,51 @@ namespace CW2
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Candidates();
-            Moon();
-            Moon2();
-            Moon3();
-            Moon4();
-            CountVotes Cv = new CountVotes(Candidate1Votes, Candidate2Votes, Candidate3Votes, Candidate4Votes);
-            label5.Text = "Votes: " + Cv.Cand1;
-            label6.Text = "Votes: " + Cv.Cand2;
-            label7.Text = "Votes: " + Cv.Cand3;
-            label8.Text = "Votes: " + Cv.Cand4;
+            using (var con = new SQLiteConnection(connection))
+            {
+                SQLiteCommand cmd = new SQLiteCommand(con);
+                cmd.CommandText = "Select VoteType from tblCandidateVote where VoteName = @Votename";
+                cmd.Parameters.AddWithValue("@Votename", comboBox1.Text);
+                con.Open();
+                var result = cmd.ExecuteScalar();
+                con.Close();
+                VoteType = result.ToString();
+
+            }
+            if (VoteType == "Preferential")
+            {
+                label1.Hide();
+                label2.Hide();
+                label3.Hide();
+                label4.Hide();
+                label5.Hide();
+                label6.Hide();
+                label7.Hide();
+                label8.Hide();
+                button2.Show();
+            }
+            else if (VoteType == "Plurality")
+            {
+                label1.Show();
+                label2.Show();
+                label3.Show();
+                label4.Show();
+                label5.Show();
+                label6.Show();
+                label7.Show();
+                label8.Show();
+                button2.Hide();
+                Candidates();
+                Moon();
+                Moon2();
+                Moon3();
+                Moon4();
+                CountVotes Cv = new CountVotes(Candidate1Votes, Candidate2Votes, Candidate3Votes, Candidate4Votes);
+                label5.Text = "Votes: " + Cv.Cand1;
+                label6.Text = "Votes: " + Cv.Cand2;
+                label7.Text = "Votes: " + Cv.Cand3;
+                label8.Text = "Votes: " + Cv.Cand4;
+            }
         }
         public void ComboBox()
         {
@@ -233,9 +271,34 @@ namespace CW2
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Hide();
-            Form1 f1 = new Form1();
-            f1.ShowDialog();
+            using (var con = new SQLiteConnection(connection))
+            {
+                SQLiteCommand cmd = new SQLiteCommand(con);
+                cmd.CommandText = "Select VoterPermissions from tblVoter where VoterUsername = @Username";
+                cmd.Parameters.AddWithValue("@Username", label9.Text);
+                con.Open();
+                var result = cmd.ExecuteScalar();
+                con.Close();
+                Permission = result.ToString();
+            }
+            if (Permission == "Voter")
+            {
+                this.Hide();
+                Form1 f1 = new Form1();
+                f1.ShowDialog();
+            }
+            if (Permission == "Administrator")
+            {
+                this.Hide();
+                AdminLandingPage ALP = new AdminLandingPage();
+                ALP.ShowDialog();
+            }
+            if (Permission == "Auditer")
+            {
+                this.Hide();
+                AuditerLandingPage ALP = new AuditerLandingPage();
+                ALP.ShowDialog();
+            }
 
         }
 
@@ -257,6 +320,13 @@ namespace CW2
         private void Form2_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            combo = comboBox1.Text.ToString();
+            Preferential pr = new Preferential();
+            pr.ShowDialog();
         }
     }
 }
