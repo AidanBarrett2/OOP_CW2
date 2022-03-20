@@ -41,8 +41,8 @@ namespace CW2
                 cmd.Parameters.AddWithValue("@VoteName", textBox1.Text);
                 cmd.Parameters.AddWithValue("@C1", textBox2.Text);
                 cmd.Parameters.AddWithValue("@C2", textBox3.Text);
-                cmd.Parameters.AddWithValue("@C3", textBox3.Text);
-                cmd.Parameters.AddWithValue("@C4", textBox4.Text);
+                cmd.Parameters.AddWithValue("@C3", textBox4.Text);
+                cmd.Parameters.AddWithValue("@C4", textBox5.Text);
                 cmd.Parameters.AddWithValue("@VoteType", comboBox1.SelectedItem);
                 con.Open();
                 cmd.ExecuteNonQuery();

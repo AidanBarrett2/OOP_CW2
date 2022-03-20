@@ -68,7 +68,6 @@ namespace CW2
                         var result = cmd.ExecuteScalar();
                         con.Close();
                         age = Convert.ToInt32(result);
-                        MessageBox.Show(age.ToString());
                     }
                     int years = DateTime.Now.Year - DOBPicker.Value.Year;
                     if (DOBPicker.Value.AddYears(years) > DateTime.Now) years--;

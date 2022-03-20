@@ -64,6 +64,7 @@ namespace CW2
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button3.Name = "button3";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 

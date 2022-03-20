@@ -59,5 +59,12 @@ namespace CW2
             this.Controls.Clear();
             InitializeComponent();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Login f1 = new Login();
+            f1.ShowDialog();
+        }
     }
 }

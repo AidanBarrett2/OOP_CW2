@@ -29,7 +29,7 @@ namespace CW2
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form3 f3 = new Form3();
+            Login f3 = new Login();
             f3.ShowDialog();
         }
 
@@ -77,6 +77,13 @@ namespace CW2
             }
             this.Controls.Clear();
             InitializeComponent();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            RegisterAuditer f1 = new RegisterAuditer();
+            f1.ShowDialog();
         }
     }
 }

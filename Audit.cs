@@ -34,6 +34,7 @@ namespace CW2
         public string Combobox = "";
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
             Candidates();
             Moon();
             Moon2();
@@ -50,7 +51,7 @@ namespace CW2
             using (var con = new SQLiteConnection(connection))
             {
                 con.Open();
-                string query = "Select VoteName from tblCandidateVote";
+                string query = "Select VoteName from tblCandidateVote where VoteType = 'Plurality'";
                 SQLiteCommand cmd = new SQLiteCommand(query, con);
                 SQLiteDataAdapter da = new SQLiteDataAdapter(query, con);
                 DataSet ds = new DataSet();
@@ -209,7 +210,6 @@ namespace CW2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
             using (var con = new SQLiteConnection(connection))
             {
                 SQLiteCommand cmd = new SQLiteCommand(con);
@@ -252,6 +252,12 @@ namespace CW2
             }
             this.Controls.Clear();
             InitializeComponent();
+            ComboBox();
+        }
+
+        private void Audit_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

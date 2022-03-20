@@ -40,7 +40,7 @@ namespace CW2
             using (var con = new SQLiteConnection(connection))
             {
                 con.Open();
-                string query = "Select VoteName from tblCandidateVote";
+                string query = "Select VoteName from tblCandidateVote where VoteType = 'Plurality'";
                 SQLiteCommand cmd = new SQLiteCommand(query, con);
                 SQLiteDataAdapter da = new SQLiteDataAdapter(query, con);
                 DataSet ds = new DataSet();

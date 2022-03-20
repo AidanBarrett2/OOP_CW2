@@ -18,6 +18,7 @@ namespace CW2
         public RegisterAuditer()
         {
             InitializeComponent();
+            ComboBox();
             DOBPicker.Format = DateTimePickerFormat.Custom;
             DOBPicker.CustomFormat = "yyyy-MM-dd";
         }
@@ -43,88 +44,6 @@ namespace CW2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int es;
-            int pass;
-            int age;
-            if (PasswordText.Text.Length < 5)
-            {
-                MessageBox.Show("Password length must be at least 5 characters", "Error");
-            }
-            else
-            {
-                if (UsernameText.Text.Length == 0 || PasswordText.Text.Length == 0 || NameText.Text.Length == 0)
-                {
-                    MessageBox.Show("Fields are Empty", "Error");
-                }
-                else
-                {
-                    using (var con = new SQLiteConnection(connection))
-                    {
-                        SQLiteCommand cmd = new SQLiteCommand(con);
-                        cmd.CommandText = "Select CountryVotingAge from tblCountry where CountryName = @Country";
-                        cmd.Parameters.AddWithValue("@Country", comboBox1.Text);
-                        con.Open();
-                        var result = cmd.ExecuteScalar();
-                        con.Close();
-                        age = Convert.ToInt32(result);
-                        MessageBox.Show(age.ToString());
-                    }
-                    int years = DateTime.Now.Year - DOBPicker.Value.Year;
-                    if (DOBPicker.Value.AddYears(years) > DateTime.Now) years--;
-                    {
-                        if (years >= age)
-                        {
-                            using (var con = new SQLiteConnection(connection))
-                            {
-                                con.Open();
-                                string stringQuery = "Select COUNT(VoterName) from tblVoter where VoterUsername = '" + UsernameText.Text + "'";
-                                SQLiteCommand command = new SQLiteCommand(stringQuery, con);
-                                es = Convert.ToInt32(command.ExecuteScalar());
-                                if (es == 1)
-                                {
-                                    MessageBox.Show("This Username is already taken.");
-                                }
-                                else
-                                {
-                                }
-                                con.Close();
-                            }
-                            using (var con = new SQLiteConnection(connection))
-                            {
-                                con.Open();
-                                string stringQuery = "Select COUNT(VoterName) from tblVoter where VoterPassword = '" + PasswordText.Text + "'";
-                                SQLiteCommand command = new SQLiteCommand(stringQuery, con);
-                                pass = Convert.ToInt32(command.ExecuteScalar());
-                                if (pass == 1)
-                                {
-                                    MessageBox.Show("This Password is already taken.");
-                                }
-                                else
-                                {
-                                }
-                                con.Close();
-                            }
-                            using (var con = new SQLiteConnection(connection))
-                            {
-                                con.Open();
-                                string stringQuery = "INSERT INTO tblVoter" + "(VoterName, VoterDOB, VoterUsername, VoterPassword, VoterCountry, VoterPermissions)" + "Values('" + NameText.Text + "','" + DOBPicker.Text + "','" + UsernameText.Text + "','" + PasswordText.Text + "','" + comboBox1.Text+ "','" + comboBox2.Text + "') ON conflict do update set VoterName = VoterName";
-                                var SqliteCmd = new SQLiteCommand();
-                                SqliteCmd = con.CreateCommand();
-                                SqliteCmd.CommandText = stringQuery;
-                                SqliteCmd.ExecuteNonQuery();
-                                con.Close();
-                                UsernameText.Text = "";
-                                PasswordText.Text = "";
-                                NameText.Text = "";
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("You are too young to vote", "Error");
-                        }
-                    }
-                }
-            }
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -192,6 +111,93 @@ namespace CW2
             InitializeComponent();
             DOBPicker.Format = DateTimePickerFormat.Custom;
             DOBPicker.CustomFormat = "yyyy-MM-dd";
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            {
+                int es;
+                int pass;
+                int age;
+                if (PasswordText.Text.Length < 5)
+                {
+                    MessageBox.Show("Password length must be at least 5 characters", "Error");
+                }
+                else
+                {
+                    if (UsernameText.Text.Length == 0 || PasswordText.Text.Length == 0 || NameText.Text.Length == 0)
+                    {
+                        MessageBox.Show("Fields are Empty", "Error");
+                    }
+                    else
+                    {
+                        using (var con = new SQLiteConnection(connection))
+                        {
+                            SQLiteCommand cmd = new SQLiteCommand(con);
+                            cmd.CommandText = "Select CountryVotingAge from tblCountry where CountryName = @Country";
+                            cmd.Parameters.AddWithValue("@Country", comboBox1.Text);
+                            con.Open();
+                            var result = cmd.ExecuteScalar();
+                            con.Close();
+                            age = Convert.ToInt32(result);
+                        }
+                        int years = DateTime.Now.Year - DOBPicker.Value.Year;
+                        if (DOBPicker.Value.AddYears(years) > DateTime.Now) years--;
+                        {
+                            if (years >= age)
+                            {
+                                using (var con = new SQLiteConnection(connection))
+                                {
+                                    con.Open();
+                                    string stringQuery = "Select COUNT(VoterName) from tblVoter where VoterUsername = '" + UsernameText.Text + "'";
+                                    SQLiteCommand command = new SQLiteCommand(stringQuery, con);
+                                    es = Convert.ToInt32(command.ExecuteScalar());
+                                    if (es == 1)
+                                    {
+                                        MessageBox.Show("This Username is already taken.");
+                                    }
+                                    else
+                                    {
+                                    }
+                                    con.Close();
+                                }
+                                using (var con = new SQLiteConnection(connection))
+                                {
+                                    con.Open();
+                                    string stringQuery = "Select COUNT(VoterName) from tblVoter where VoterPassword = '" + PasswordText.Text + "'";
+                                    SQLiteCommand command = new SQLiteCommand(stringQuery, con);
+                                    pass = Convert.ToInt32(command.ExecuteScalar());
+                                    if (pass == 1)
+                                    {
+                                        MessageBox.Show("This Password is already taken.");
+                                    }
+                                    else
+                                    {
+                                    }
+                                    con.Close();
+                                }
+                                using (var con = new SQLiteConnection(connection))
+                                {
+                                    con.Open();
+                                    string stringQuery = "INSERT INTO tblVoter" + "(VoterName, VoterDOB, VoterUsername, VoterPassword, VoterCountry, VoterPermissions)" + "Values('" + NameText.Text + "','" + DOBPicker.Text + "','" + UsernameText.Text + "','" + PasswordText.Text + "','" + comboBox1.Text + "','" + comboBox2.Text + "') ON conflict do update set VoterName = VoterName";
+                                    var SqliteCmd = new SQLiteCommand();
+                                    SqliteCmd = con.CreateCommand();
+                                    SqliteCmd.CommandText = stringQuery;
+                                    SqliteCmd.ExecuteNonQuery();
+                                    con.Close();
+                                    UsernameText.Text = "";
+                                    PasswordText.Text = "";
+                                    NameText.Text = "";
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("You are too young to vote", "Error");
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
