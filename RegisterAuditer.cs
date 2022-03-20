@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Data.SQLite;
+using System.Threading;
 
 namespace CW2
 {
@@ -145,11 +146,6 @@ namespace CW2
         {
 
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -179,6 +175,23 @@ namespace CW2
             this.Hide();
             AdminLandingPage ALP = new AdminLandingPage();
             ALP.ShowDialog();
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox3.SelectedIndex)
+            {
+                case 0:
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    break;
+                case 1:
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ms-MY");
+                    break;
+            }
+            this.Controls.Clear();
+            InitializeComponent();
+            DOBPicker.Format = DateTimePickerFormat.Custom;
+            DOBPicker.CustomFormat = "yyyy-MM-dd";
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,10 +22,6 @@ namespace CW2
         }
         public static string sendtext = "";
         string Permission = "";
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
@@ -101,6 +98,21 @@ namespace CW2
 
         private void UsernameText_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    break;
+                case 1:
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ms-MY");
+                    break;
+            }
+            this.Controls.Clear();
+            InitializeComponent();
         }
     }
 }

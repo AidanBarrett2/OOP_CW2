@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Configuration;
+using System.Threading;
 
 namespace CW2
 {
@@ -236,6 +237,21 @@ namespace CW2
                     }
                 }
             }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox2.SelectedIndex)
+            {
+                case 0:
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    break;
+                case 1:
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ms-MY");
+                    break;
+            }
+            this.Controls.Clear();
+            InitializeComponent();
         }
     }
 }

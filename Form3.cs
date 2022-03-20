@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace CW2
 
@@ -701,6 +702,23 @@ namespace CW2
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (comboBox2.SelectedIndex)
+            {
+                case 0:
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    break;
+                case 1:
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ms-MY");
+                    break;
+            }
+            this.Controls.Clear();
+            InitializeComponent();
+            combooptions();
+            label1.Text = Login.sendtext;
         }
     }
 }

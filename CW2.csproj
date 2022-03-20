@@ -157,32 +157,68 @@
     </Compile>
     <Compile Include="TestCount.cs" />
     <Compile Include="Vote.cs" />
+    <Compile Include="Weighedvoting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Weighedvoting.Designer.cs">
+      <DependentUpon>Weighedvoting.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddAVote.ms-MY.resx">
+      <DependentUpon>AddAVote.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddAVote.resx">
       <DependentUpon>AddAVote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminLandingPage.ms-MY.resx">
+      <DependentUpon>AdminLandingPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminLandingPage.resx">
       <DependentUpon>AdminLandingPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Audit.ms-MY.resx">
+      <DependentUpon>Audit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Audit.resx">
       <DependentUpon>Audit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AuditerLandingPage.ms-MY.resx">
+      <DependentUpon>AuditerLandingPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AuditerLandingPage.resx">
       <DependentUpon>AuditerLandingPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form1.ms-MY.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.ms-MY.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form3.ms-MY.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InPersonStart.ms-MY.resx">
+      <DependentUpon>InPersonStart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InPersonStart.resx">
       <DependentUpon>InPersonStart.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InPersonVote.ms-MY.resx">
+      <DependentUpon>InPersonVote.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InPersonVote.resx">
       <DependentUpon>InPersonVote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.ms-MY.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -200,11 +236,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Content Include="Register.resx">
+    <EmbeddedResource Include="Register.resx">
       <DependentUpon>Register.cs</DependentUpon>
-    </Content>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Register.ms-MY.resx">
+      <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterAuditer.ms-MY.resx">
+      <DependentUpon>RegisterAuditer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegisterAuditer.resx">
       <DependentUpon>RegisterAuditer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Weighedvoting.resx">
+      <DependentUpon>Weighedvoting.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

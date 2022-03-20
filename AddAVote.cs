@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using System.Threading;
 using System.Configuration;
 
 namespace CW2
@@ -54,6 +55,21 @@ namespace CW2
             this.Hide();
             AdminLandingPage ALP = new AdminLandingPage();
             ALP.ShowDialog();
+        }
+
+        private void AddAVote_Load(object sender, EventArgs e)
+        {
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    break;
+                case 1:
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ms-MY");
+                    break;
+            }
+            this.Controls.Clear();
+            InitializeComponent();
         }
     }
 }

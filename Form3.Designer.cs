@@ -29,6 +29,7 @@ namespace CW2
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             this.Candidate3 = new System.Windows.Forms.Button();
             this.Candidate1 = new System.Windows.Forms.Button();
             this.Candidate2 = new System.Windows.Forms.Button();
@@ -41,11 +42,12 @@ namespace CW2
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -54,14 +56,9 @@ namespace CW2
             // 
             this.Candidate3.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Candidate3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RoyalBlue;
-            this.Candidate3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Candidate3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.Candidate3, "Candidate3");
             this.Candidate3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Candidate3.Location = new System.Drawing.Point(193, 325);
             this.Candidate3.Name = "Candidate3";
-            this.Candidate3.Size = new System.Drawing.Size(132, 70);
-            this.Candidate3.TabIndex = 0;
-            this.Candidate3.Text = "Clement Attlee";
             this.Candidate3.UseVisualStyleBackColor = false;
             this.Candidate3.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -70,14 +67,9 @@ namespace CW2
             this.Candidate1.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Candidate1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.RoyalBlue;
             this.Candidate1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RoyalBlue;
-            this.Candidate1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Candidate1.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.Candidate1, "Candidate1");
             this.Candidate1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Candidate1.Location = new System.Drawing.Point(193, 109);
             this.Candidate1.Name = "Candidate1";
-            this.Candidate1.Size = new System.Drawing.Size(132, 70);
-            this.Candidate1.TabIndex = 1;
-            this.Candidate1.Text = "Winston Churchill";
             this.Candidate1.UseVisualStyleBackColor = false;
             this.Candidate1.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -85,14 +77,9 @@ namespace CW2
             // 
             this.Candidate2.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Candidate2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RoyalBlue;
-            this.Candidate2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Candidate2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.Candidate2, "Candidate2");
             this.Candidate2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Candidate2.Location = new System.Drawing.Point(193, 212);
             this.Candidate2.Name = "Candidate2";
-            this.Candidate2.Size = new System.Drawing.Size(132, 70);
-            this.Candidate2.TabIndex = 2;
-            this.Candidate2.Text = "Archibald Sinclair";
             this.Candidate2.UseVisualStyleBackColor = false;
             this.Candidate2.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -100,169 +87,126 @@ namespace CW2
             // 
             this.Candidate4.BackColor = System.Drawing.Color.CornflowerBlue;
             this.Candidate4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.RoyalBlue;
-            this.Candidate4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Candidate4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.Candidate4, "Candidate4");
             this.Candidate4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Candidate4.Location = new System.Drawing.Point(193, 432);
             this.Candidate4.Name = "Candidate4";
-            this.Candidate4.Size = new System.Drawing.Size(132, 70);
-            this.Candidate4.TabIndex = 3;
-            this.Candidate4.Text = "Ernest Brown";
             this.Candidate4.UseVisualStyleBackColor = false;
             this.Candidate4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.button5, "button5");
             this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Location = new System.Drawing.Point(189, 12);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(65, 35);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Back";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.label1, "label1");
             this.label1.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.label1.Location = new System.Drawing.Point(439, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 23);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "label1";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 16);
+            resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(171, 24);
-            this.comboBox1.TabIndex = 6;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // checkBox1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(340, 138);
+            resources.ApplyResources(this.checkBox1, "checkBox1");
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(18, 17);
-            this.checkBox1.TabIndex = 7;
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // checkBox2
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(340, 241);
+            resources.ApplyResources(this.checkBox2, "checkBox2");
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(18, 17);
-            this.checkBox2.TabIndex = 8;
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // checkBox3
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(340, 354);
+            resources.ApplyResources(this.checkBox3, "checkBox3");
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(18, 17);
-            this.checkBox3.TabIndex = 9;
             this.checkBox3.UseVisualStyleBackColor = true;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // checkBox4
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(340, 461);
+            resources.ApplyResources(this.checkBox4, "checkBox4");
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(18, 17);
-            this.checkBox4.TabIndex = 10;
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.button1, "button1");
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(260, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 35);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Clear Vote";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::CW2.Properties.Resources._3_36488_black_arrow_png_transparent_background_black_arrow1;
-            this.pictureBox2.InitialImage = global::CW2.Properties.Resources._3_36488_black_arrow_png_transparent_background_black_arrow1;
-            this.pictureBox2.Location = new System.Drawing.Point(233, 331);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(58, 36);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 15;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Image = global::CW2.Properties.Resources._3_36488_black_arrow_png_transparent_background_black_arrow;
-            this.pictureBox1.Location = new System.Drawing.Point(233, 171);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(58, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 16;
-            this.listBox2.Location = new System.Drawing.Point(327, 171);
+            resources.ApplyResources(this.listBox2, "listBox2");
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(174, 196);
-            this.listBox2.TabIndex = 13;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(12, 171);
+            resources.ApplyResources(this.listBox1, "listBox1");
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(174, 196);
-            this.listBox1.TabIndex = 12;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.button2, "button2");
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(363, 398);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 35);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "Submit Vote";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            resources.GetString("comboBox2.Items"),
+            resources.GetString("comboBox2.Items1")});
+            resources.ApplyResources(this.comboBox2, "comboBox2");
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::CW2.Properties.Resources._3_36488_black_arrow_png_transparent_background_black_arrow1;
+            this.pictureBox2.InitialImage = global::CW2.Properties.Resources._3_36488_black_arrow_png_transparent_background_black_arrow1;
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Image = global::CW2.Properties.Resources._3_36488_black_arrow_png_transparent_background_black_arrow;
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // Form3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(513, 538);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -281,8 +225,6 @@ namespace CW2
             this.Controls.Add(this.Candidate1);
             this.Controls.Add(this.Candidate3);
             this.Name = "Form3";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form3";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -309,5 +251,6 @@ namespace CW2
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
